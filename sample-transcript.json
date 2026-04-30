@@ -1,0 +1,62 @@
+{
+  "score": {
+    "value": 6,
+    "label": "Reliable and Productive",
+    "band": "Productivity",
+    "justification": "The supervisor describes strong task execution...",
+    "confidence": "medium"
+  },
+  "evidence": [
+    {
+      "quote": "He helps me with production tracking. Every evening he updates it and sends it to me on WhatsApp.",
+      "signal": "positive",
+      "dimension": "execution",
+      "interpretation": "Reliable daily task completion, but the tracking sheet is maintained by the Fellow personally — not a self-sustaining system."
+    },
+    {
+      "quote": "He doesn't really push back. If I tell him to do something, he does it.",
+      "signal": "negative",
+      "dimension": "execution",
+      "interpretation": "Supervisor explicitly flags lack of independent initiative — a ceiling on scoring above 6."
+    }
+  ],
+  "kpiMapping": [
+    {
+      "kpi": "Quality",
+      "evidence": "Handles quality complaints from Tier 1 customers",
+      "systemOrPersonal": "personal"
+    },
+    {
+      "kpi": "TAT",
+      "evidence": "Cycle time study for drum brake line saved 10 min per batch",
+      "systemOrPersonal": "system"
+    }
+  ],
+  "gaps": [
+    {
+      "dimension": "systems_building",
+      "detail": "Transcript mentions one system (production tracking sheet) but it's personally maintained by the Fellow. No evidence of systems that run without the Fellow."
+    },
+    {
+      "dimension": "change_management",
+      "detail": "No mention of how the Fellow handles resistance or gets the floor team to adopt new processes."
+    }
+  ],
+  "followUpQuestions": [
+    {
+      "question": "If Karthik took a week off, what would stop working? What would keep running on its own?",
+      "targetGap": "systems_building",
+      "lookingFor": "Whether any of Karthik's work is self-sustaining or everything depends on his personal presence."
+    },
+    {
+      "question": "Has Karthik ever come to you with a problem you hadn't noticed, and a suggestion for how to fix it?",
+      "targetGap": "problem_identification",
+      "lookingFor": "Evidence of Level 7 behavior — independent problem identification beyond assigned tasks."
+    },
+    {
+      "question": "How do the floor workers respond when Karthik asks them to do something differently?",
+      "targetGap": "change_management",
+      "lookingFor": "Whether the Fellow can get experienced workers to adopt new processes."
+    }
+  ]
+}
