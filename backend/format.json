@@ -1,37 +1,138 @@
 {
-  "score": {
-    "value": "1-10 (integer)",
-    "label": "Not Interested | Lacks Discipline | Motivated but Directionless | Careless and Inconsistent | Consistent Performer | Reliable and Productive | Problem Identifier | Problem Solver | Innovative and Experimental | Exceptional Performer",
-    "band": "Need Attention | Productivity | Performance",
-    "justification": "Free text: explanation citing specific evidence from transcript, 2-4 sentences",
-    "confidence": "low | medium | high"
-  },
-  "evidence": [
-    {
-      "quote": "exact quote from transcript (verbatim or near-verbatim)",
-      "signal": "positive | negative | neutral",
-      "dimension": "execution | systems_building | kpi_impact | change_management",
-      "interpretation": "Free text: what this quote means for scoring, distinguishing Layer 1 vs Layer 2 work"
+  "type": "object",
+  "required": ["score", "evidence", "kpiMapping", "gaps", "followUpQuestions"],
+  "properties": {
+    "score": {
+      "type": "object",
+      "required": ["value", "label", "band", "justification", "confidence"],
+      "properties": {
+        "value": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Score from 1 to 10"
+        },
+        "label": {
+          "type": "string",
+          "enum": [
+            "Not Interested",
+            "Lacks Discipline",
+            "Motivated but Directionless",
+            "Careless and Inconsistent",
+            "Consistent Performer",
+            "Reliable and Productive",
+            "Problem Identifier",
+            "Problem Solver",
+            "Innovative and Experimental",
+            "Exceptional Performer"
+          ]
+        },
+        "band": {
+          "type": "string",
+          "enum": ["Need Attention", "Productivity", "Performance"]
+        },
+        "justification": {
+          "type": "string",
+          "description": "2-4 sentence explanation citing specific evidence from the transcript"
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["quote", "signal", "dimension", "interpretation"],
+        "properties": {
+          "quote": {
+            "type": "string",
+            "description": "Exact quote from transcript"
+          },
+          "signal": {
+            "type": "string",
+            "enum": ["positive", "negative", "neutral"]
+          },
+          "dimension": {
+            "type": "string",
+            "enum": ["execution", "systems_building", "kpi_impact", "change_management"]
+          },
+          "interpretation": {
+            "type": "string",
+            "description": "What this quote means for scoring, distinguishing Layer 1 vs Layer 2 work"
+          }
+        }
+      }
+    },
+    "kpiMapping": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kpi", "evidence", "systemOrPersonal"],
+        "properties": {
+          "kpi": {
+            "type": "string",
+            "enum": [
+              "Lead Generation",
+              "Lead Conversion",
+              "Upselling",
+              "Cross-selling",
+              "NPS",
+              "PAT",
+              "TAT",
+              "Quality"
+            ]
+          },
+          "evidence": {
+            "type": "string",
+            "description": "Transcript excerpt showing this KPI connection"
+          },
+          "systemOrPersonal": {
+            "type": "string",
+            "enum": ["system", "personal"]
+          }
+        }
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["dimension", "detail"],
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "enum": ["execution", "systems_building", "kpi_impact", "change_management"]
+          },
+          "detail": {
+            "type": "string",
+            "description": "Specific explanation of what is missing or not demonstrated"
+          }
+        }
+      }
+    },
+    "followUpQuestions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["question", "targetGap", "lookingFor"],
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "Specific question to ask supervisor"
+          },
+          "targetGap": {
+            "type": "string",
+            "enum": ["execution", "systems_building", "kpi_impact", "change_management", "problem_identification"]
+          },
+          "lookingFor": {
+            "type": "string",
+            "description": "What evidence this question should surface"
+          }
+        }
+      }
     }
-  ],
-  "kpiMapping": [
-    {
-      "kpi": "Lead Generation | Lead Conversion | Upselling | Cross-selling | NPS | PAT | TAT | Quality",
-      "evidence": "transcript excerpt showing this KPI connection",
-      "systemOrPersonal": "system | personal"
-    }
-  ],
-  "gaps": [
-    {
-      "dimension": "execution | systems_building | kpi_impact | change_management",
-      "detail": "Free text: specific explanation of what's missing or not demonstrated, citing transcript where relevant"
-    }
-  ],
-  "followUpQuestions": [
-    {
-      "question": "Specific question to ask supervisor in follow-up call",
-      "targetGap": "execution | systems_building | kpi_impact | change_management | problem_identification",
-      "lookingFor": "Free text: what evidence this question should surface"
-    }
-  ]
+  }
 }

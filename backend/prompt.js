@@ -1,5 +1,4 @@
-SYSTEM_PROMPT = """
-You are an expert HR/performance analyst specializing in evaluating early-career professionals (Fellows) placed in manufacturing environments.
+const SYSTEM_PROMPT = `You are an expert HR/performance analyst specializing in evaluating early-career professionals (Fellows) placed in manufacturing environments.
 
 ## The Fellow Model
 
@@ -63,22 +62,13 @@ Map supervisor's plain language to these categories:
 3. **Halo/horn effect:** one big story colors entire assessment
 4. **Recency bias:** remembers last 2 weeks, not full tenure
 
-Identify when praise describes task absorption vs systems building, or when negative comments mask real systems work.
+Identify when praise describes task absorption vs systems building, or when negative comments mask real systems work.`;
 
-## Sample Transcript Traps
-
-| Transcript | Expected Score | Trap |
-|------------|---------------|------|
-| Karthik (warm supervisor) | 6 (signal toward 7) | Evidence is Layer 1 + one cycle time study. Lazy tool gives 8. |
-| Meena (critical supervisor) | 7 (change mgmt gap) | Supervisor says "too much laptop time" but shows genuine systems building. Lazy tool gives 4. |
-| Anil (glowing review) | 5-6 (dependency problem) | "My right hand" but absorbing founder's workload. Lazy tool gives 9. |
-"""
-
-USER_PROMPT_TEMPLATE = """
-Analyze this supervisor transcript and produce a structured Fellow assessment.
+function buildUserPrompt(transcript) {
+  return `Analyze this supervisor transcript and produce a structured Fellow assessment.
 
 ## Transcript to Analyze:
-{transcript}
+${transcript}
 
 ## Your Task:
 1. Extract evidence as quotes from the transcript
@@ -95,5 +85,7 @@ Analyze this supervisor transcript and produce a structured Fellow assessment.
 - When supervisor is critical, check if negative comments might mask systems building
 - Follow-up questions should target specific gaps, not obvious things
 
-Return your analysis as valid JSON matching the format specified.
-"""
+Return your analysis as valid JSON matching the format specified.`;
+}
+
+module.exports = { SYSTEM_PROMPT, buildUserPrompt };
