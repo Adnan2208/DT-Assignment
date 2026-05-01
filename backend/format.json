@@ -1,0 +1,37 @@
+{
+  "score": {
+    "value": 6,
+    "label": "Reliable and Productive",
+    "band": "Productivity",
+    "justification": "The supervisor describes strong task execution but limited evidence of systems building.",
+    "confidence": "medium"
+  },
+  "evidence": [
+    {
+      "quote": "exact quote from transcript",
+      "signal": "positive|negative|neutral",
+      "dimension": "execution|systems_building|kpi_impact|change_management",
+      "interpretation": "what this quote means for scoring, distinguishing Layer 1 vs Layer 2 work"
+    }
+  ],
+  "kpiMapping": [
+    {
+      "kpi": "Lead Generation|Lead Conversion|Upselling|Cross-selling|NPS|PAT|TAT|Quality",
+      "evidence": "transcript excerpt showing this KPI connection",
+      "systemOrPersonal": "system|personal"
+    }
+  ],
+  "gaps": [
+    {
+      "dimension": "execution|systems_building|kpi_impact|change_management",
+      "detail": "specific explanation of what's missing or not demonstrated"
+    }
+  ],
+  "followUpQuestions": [
+    {
+      "question": "specific question to ask supervisor",
+      "targetGap": "execution|systems_building|kpi_impact|change_management|problem_identification",
+      "lookingFor": "what evidence this question should surface"
+    }
+  ]
+}
